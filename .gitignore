@@ -1,0 +1,33 @@
+# Arquivos de banco de dados
+*.sql
+*.db
+*.sqlite
+
+# Configurações locais do IDE/editor
+.vscode/
+.idea/
+
+# Logs e dumps
+*.log
+*.bak
+*.out
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Arquivos binários
+*.exe
+*.dll
+*.o
+*.so
+
+# Outros arquivos desnecessários
+*.class
+*.pyc
