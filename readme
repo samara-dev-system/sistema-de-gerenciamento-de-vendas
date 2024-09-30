@@ -1,0 +1,54 @@
+# Projeto Vendas - Sistema de Banco de Dados
+
+Este projeto consiste em um sistema de banco de dados relacional para gerenciamento de clientes, produtos e vendas. Foi implementado em SQL e contém a criação de três tabelas principais: `clientes`, `produtos` e `vendas`, com suas respectivas relações.
+
+## Estrutura do Banco de Dados
+
+O banco de dados é composto por três tabelas:
+
+1. **clientes**: armazena informações dos clientes (id, nome, email e telefone).
+2. **produtos**: armazena informações dos produtos (id, nome, preço e quantidade em estoque).
+3. **vendas**: registra as vendas realizadas (id da venda, cliente, produto, quantidade e data da venda).
+
+### Relações
+
+- Cada venda está relacionada a um cliente e a um produto.
+- Ao excluir um cliente ou produto, todas as vendas relacionadas são excluídas automaticamente, graças à implementação de *foreign keys* com `ON DELETE CASCADE`.
+
+## Scripts Incluídos
+
+- Criação e exclusão do banco de dados.
+- Criação de tabelas com as respectivas *foreign keys*.
+- Inserção de dados nas tabelas.
+- Consultas SQL para exibição de dados.
+- Atualizações e exclusões de registros.
+
+## Como Usar
+
+1. Crie o banco de dados executando os comandos SQL a partir do script.
+2. Insira os dados nas tabelas de clientes, produtos e vendas.
+3. Execute as consultas para visualizar os registros.
+4. Faça atualizações ou exclusões conforme necessário.
+
+## Consultas SQL
+
+O projeto inclui consultas SQL para:
+
+- Exibir todos os clientes e produtos.
+- Exibir as vendas com detalhes, incluindo nome do cliente, nome do produto, quantidade vendida e data da venda.
+- Atualizar preços de produtos e informações dos clientes.
+- Excluir vendas, clientes e produtos.
+
+## Pré-requisitos
+
+- Um servidor de banco de dados MySQL instalado.
+- Um cliente MySQL (como o MySQL Workbench ou a linha de comando MySQL) para executar os scripts SQL.
+
+## Contribuição
+
+Sinta-se à vontade para contribuir com melhorias e novas funcionalidades. Basta realizar um *fork* do repositório e abrir um *pull request* com suas mudanças.
+
+## Licença
+
+Este projeto é licenciado sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
+
