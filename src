@@ -1,0 +1,96 @@
+-- Criação do banco de dados
+DROP DATABASE IF EXISTS vendas;
+CREATE DATABASE vendas;
+USE vendas;
+
+-- Criação da tabela clientes
+CREATE TABLE clientes (
+    idcliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    telefone VARCHAR(20)
+);
+
+-- Criação da tabela produtos
+CREATE TABLE produtos (
+    idproduto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    estoque INT NOT NULL
+);
+
+-- Criação da tabela vendas
+CREATE TABLE vendas (
+    idvenda INT AUTO_INCREMENT PRIMARY KEY,
+    idcliente INT NOT NULL,
+    idproduto INT NOT NULL,
+    quantidade INT NOT NULL,
+    data_venda DATE NOT NULL,
+    FOREIGN KEY (idcliente) REFERENCES clientes(idcliente) ON DELETE CASCADE,
+    FOREIGN KEY (idproduto) REFERENCES produtos(idproduto) ON DELETE CASCADE
+);
+
+-- Inserção de dados na tabela clientes
+INSERT INTO clientes (nome, email, telefone) VALUES
+('Ana Silva', 'ana@example.com', '123456789'),
+('Pedro Santos', 'pedro@example.com', '987654321'),
+('Maria Oliveira', 'maria@example.com', '456789123');
+
+-- Inserção de dados na tabela produtos
+INSERT INTO produtos (nome, preco, estoque) VALUES
+('Produto A', 10.00, 100),
+('Produto B', 15.50, 200),
+('Produto C', 20.00, 150);
+
+-- Inserção de dados na tabela vendas
+INSERT INTO vendas (idcliente, idproduto, quantidade, data_venda) VALUES
+(1, 1, 2, '2023-09-01'),
+(2, 2, 1, '2023-09-02'),
+(3, 3, 3, '2023-09-03');
+
+-- Consultas
+-- 1. Exibir todos os clientes
+SELECT * FROM clientes;
+
+-- 2. Exibir todos os produtos
+SELECT * FROM produtos;
+
+-- 3. Exibir todas as vendas com detalhes
+SELECT v.idvenda, c.nome AS cliente, p.nome AS produto, v.quantidade, v.data_venda
+FROM vendas v
+JOIN clientes c ON v.idcliente = c.idcliente
+JOIN produtos p ON v.idproduto = p.idproduto;
+
+-- Atualização de dados
+-- Atualizar o preço de um produto
+UPDATE produtos 
+SET preco = 12.00 
+WHERE idproduto = 1;
+
+-- Atualizar o telefone de um cliente
+UPDATE clientes 
+SET telefone = '321654987' 
+WHERE idcliente = 2;
+
+-- Deletar um produto e o cliente associado a uma venda
+-- Primeiro, deletar as vendas associadas ao cliente
+DELETE FROM vendas 
+WHERE idcliente = 2;
+
+-- Deletar o cliente
+DELETE FROM clientes 
+WHERE idcliente = 2;
+
+-- Deletar um produto
+DELETE FROM produtos 
+WHERE idproduto = 1;
+
+-- Exibir dados restantes
+-- Exibir todos os clientes após deleções
+SELECT * FROM clientes;
+
+-- Exibir todos os produtos após deleções
+SELECT * FROM produtos;
+
+-- Exibir todas as vendas após deleções
+SELECT * FROM vendas;
